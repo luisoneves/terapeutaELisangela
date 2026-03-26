@@ -3,27 +3,45 @@ import { Menu, X } from 'lucide-react';
 import { LotusIcon } from './icons/TherapyIcons';
 import { useScroll } from '@/hooks/useScroll';
 import { useSmoothScroll } from '@/hooks/useSmoothScroll';
+import { useScrollDirection } from '@/hooks/useScrollDirection';
+import { useReducedMotion } from '@/hooks/useReducedMotion';
 import { siteConfig } from '@/config/site';
+import type { FeatureFlags } from '@/config/featureFlags';
+import { cn } from '@/lib/utils';
 
-const Navigation: React.FC = () => {
+interface SmartHeaderProps {
+  flags: FeatureFlags;
+}
+
+const Navigation: React.FC<SmartHeaderProps> = ({ flags }) => {
   const isScrolled = useScroll(50);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { scrollToSection } = useSmoothScroll();
+  
+  const shouldAnimate = flags.animationsEnabled && flags.smartHeaderEnabled;
+  const prefersReducedMotion = useReducedMotion();
+  const scrollDirection = useScrollDirection({ threshold: 10 });
+  
+  const isHidden = shouldAnimate && !prefersReducedMotion && scrollDirection === 'down';
 
   const handleNavClick = (href: string) => {
     scrollToSection(href);
     setIsMobileMenuOpen(false);
   };
 
+  const headerClasses = cn(
+    'fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out',
+    isScrolled
+      ? 'bg-cream/80 backdrop-blur-md shadow-soft py-3'
+      : 'bg-transparent py-6',
+    shouldAnimate && !prefersReducedMotion && (
+      isHidden ? '-translate-y-full opacity-0' : 'translate-y-0 opacity-100'
+    )
+  );
+
   return (
     <>
-      <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${
-          isScrolled
-            ? 'bg-cream/80 backdrop-blur-md shadow-soft py-3'
-            : 'bg-transparent py-6'
-        }`}
-      >
+      <nav className={headerClasses}>
         <div className="w-full px-6 sm:px-8 lg:px-12 xl:px-16">
           <div className="flex items-center justify-between">
             <a

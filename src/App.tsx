@@ -10,6 +10,7 @@ import { ScrollTrigger, cleanupGSAP } from '@/lib/gsap';
 import Navigation from './components/Navigation';
 import AccessibilityMenu from './components/AccessibilityMenu';
 import NavigationDots from './components/NavigationDots';
+import DebugPanel from './components/DebugPanel';
 import Hero from './sections/Hero';
 import About from './sections/About';
 import Services from './sections/Services';
@@ -17,6 +18,7 @@ import Benefits from './sections/Benefits';
 import Testimonials from './sections/Testimonials';
 import Contact from './sections/Contact';
 import Footer from './sections/Footer';
+import { useFeatureFlags } from './config/featureFlags';
 
 // =============================================================================
 // COMPONENT: App
@@ -33,6 +35,8 @@ import Footer from './sections/Footer';
 // - Footer (rodapé)
 
 function App() {
+  const { flags } = useFeatureFlags();
+
   useEffect(() => {
     // =============================================================================
     // SCROLLTRIGGER REFRESH
@@ -62,11 +66,11 @@ function App() {
   return (
     <div className="relative min-h-screen bg-cream">
       {/* Navegação */}
-      <Navigation />
+      <Navigation flags={flags} />
 
       {/* Conteúdo Principal */}
       <main>
-        <Hero />
+        <Hero flags={flags} />
         <About />
         <Services />
         <Benefits />
@@ -82,6 +86,9 @@ function App() {
 
       {/* Navigation Dots */}
       <NavigationDots />
+
+      {/* Debug Panel (dev only) */}
+      <DebugPanel />
     </div>
   );
 }

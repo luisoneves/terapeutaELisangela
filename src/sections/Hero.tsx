@@ -1,8 +1,15 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ArrowDown, Sparkles } from 'lucide-react';
+import { useReducedMotion } from '@/hooks/useReducedMotion';
+import { HintTooltip } from '@/components/HintTooltip';
+import type { FeatureFlags } from '@/config/featureFlags';
 
-const Hero: React.FC = () => {
+interface HeroProps {
+  flags?: FeatureFlags;
+}
+
+const Hero: React.FC<HeroProps> = ({ flags }) => {
   const heroRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
@@ -10,7 +17,12 @@ const Hero: React.FC = () => {
   const imageRef = useRef<HTMLDivElement>(null);
   const shapeRef = useRef<HTMLDivElement>(null);
 
+  const shouldAnimate = flags?.animationsEnabled && flags?.heroTitleEnabled;
+  const prefersReducedMotion = useReducedMotion();
+
   useEffect(() => {
+    if (shouldAnimate && !prefersReducedMotion) return;
+    
     const ctx = gsap.context(() => {
       // Timeline de entrada
       const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
@@ -68,10 +80,12 @@ const Hero: React.FC = () => {
     }, heroRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [shouldAnimate, prefersReducedMotion]);
 
   // Efeito de paralaxe suave no mouse
   useEffect(() => {
+    if (shouldAnimate && !prefersReducedMotion) return;
+
     const handleMouseMove = (e: MouseEvent) => {
       if (!heroRef.current) return;
       
@@ -162,19 +176,21 @@ const Hero: React.FC = () => {
             </p>
 
             <div ref={ctaRef} className="flex flex-wrap gap-4 opacity-0">
-              <a
-                href="#contato"
-                onClick={(e) => {
-                  e.preventDefault();
-                  document.querySelector('#contato')?.scrollIntoView({ behavior: 'smooth' });
-                }}
-                className="inline-flex items-center px-8 py-4 bg-dark text-cream font-body text-sm font-medium rounded-full hover:bg-gold transition-all duration-300 hover:shadow-glow group"
-              >
-                Agende sua sessão
-                <span className="ml-2 transition-transform duration-300 group-hover:translate-x-1">
-                  →
-                </span>
-              </a>
+              <HintTooltip flags={flags || { animationsEnabled: false, smartHeaderEnabled: false, heroTitleEnabled: false, hintsEnabled: false }}>
+                <a
+                  href="#contato"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document.querySelector('#contato')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="inline-flex items-center px-8 py-4 bg-dark text-cream font-body text-sm font-medium rounded-full hover:bg-gold transition-all duration-300 hover:shadow-glow group"
+                >
+                  Agende sua sessão
+                  <span className="ml-2 transition-transform duration-300 group-hover:translate-x-1">
+                    →
+                  </span>
+                </a>
+              </HintTooltip>
               <a
                 href="#servicos"
                 onClick={(e) => {
