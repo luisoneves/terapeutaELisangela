@@ -207,7 +207,10 @@ const Hero: React.FC = () => {
               >
                 <img
                   src="/hero-image.jpg"
-                  alt="Mulher em momento de tranquilidade"
+                  alt="Mulher em momento de tranquilidade e paz"
+                  width={600}
+                  height={800}
+                  loading="eager"
                   className="w-full h-auto object-cover aspect-[3/4] hover:scale-105 transition-transform duration-700"
                 />
               </div>

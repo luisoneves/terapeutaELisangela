@@ -114,6 +114,9 @@ const About: React.FC = () => {
                 <img
                   src="/therapist-portrait.jpg"
                   alt="Ana Silva - Terapeuta Holística"
+                  width={400}
+                  height={533}
+                  loading="lazy"
                   className="w-full h-auto object-cover aspect-[3/4] hover:scale-105 transition-transform duration-700"
                 />
               </div>
@@ -122,7 +125,10 @@ const About: React.FC = () => {
               <img
                 ref={butterflyRef}
                 src="/butterfly.png"
-                alt="Borboleta"
+                alt="Borboleta decorativa"
+                width={160}
+                height={160}
+                loading="lazy"
                 className="absolute -top-8 -right-8 w-32 h-32 lg:w-40 lg:h-40 opacity-0 z-10 animate-breathe"
               />
 

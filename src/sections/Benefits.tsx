@@ -153,6 +153,9 @@ const Benefits: React.FC = () => {
                   <img
                     src="/benefit-1.jpg"
                     alt="Meditação na praia"
+                    width={300}
+                    height={256}
+                    loading="lazy"
                     className="w-full h-64 object-cover hover:scale-105 transition-transform duration-700"
                   />
                 </div>
@@ -160,6 +163,9 @@ const Benefits: React.FC = () => {
                   <img
                     src="/benefit-2.jpg"
                     alt="Yoga restaurativa"
+                    width={300}
+                    height={192}
+                    loading="lazy"
                     className="w-full h-48 object-cover hover:scale-105 transition-transform duration-700"
                   />
                 </div>
@@ -171,6 +177,9 @@ const Benefits: React.FC = () => {
                   <img
                     src="/benefit-3.jpg"
                     alt="Yoga na natureza"
+                    width={300}
+                    height={288}
+                    loading="lazy"
                     className="w-full h-72 object-cover hover:scale-105 transition-transform duration-700"
                   />
                 </div>
@@ -178,6 +187,9 @@ const Benefits: React.FC = () => {
                   <img
                     src="/benefit-1.jpg"
                     alt="Momento de paz"
+                    width={300}
+                    height={224}
+                    loading="lazy"
                     className="w-full h-56 object-cover hover:scale-105 transition-transform duration-700"
                     style={{ objectPosition: 'center 30%' }}
                   />
@@ -190,6 +202,9 @@ const Benefits: React.FC = () => {
                   <img
                     src="/benefit-2.jpg"
                     alt="Bem-estar"
+                    width={300}
+                    height={208}
+                    loading="lazy"
                     className="w-full h-52 object-cover hover:scale-105 transition-transform duration-700"
                     style={{ objectPosition: 'center 70%' }}
                   />
@@ -198,6 +213,9 @@ const Benefits: React.FC = () => {
                   <img
                     src="/benefit-3.jpg"
                     alt="Conexão com a natureza"
+                    width={300}
+                    height={256}
+                    loading="lazy"
                     className="w-full h-64 object-cover hover:scale-105 transition-transform duration-700"
                     style={{ objectPosition: 'center 60%' }}
                   />
@@ -211,6 +229,9 @@ const Benefits: React.FC = () => {
             <img
               src="/benefit-1.jpg"
               alt="Benefícios da terapia holística"
+              width={400}
+              height={256}
+              loading="lazy"
               className="w-full h-full object-cover"
             />
           </div>

@@ -181,7 +181,10 @@ const Testimonials: React.FC = () => {
                   <div className="w-24 h-24 lg:w-32 lg:h-32 rounded-full overflow-hidden border-4 border-gold/20">
                     <img
                       src={currentTestimonial.image}
-                      alt={currentTestimonial.name}
+                      alt={`Foto de ${currentTestimonial.name}`}
+                      width={128}
+                      height={128}
+                      loading="lazy"
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -259,7 +262,10 @@ const Testimonials: React.FC = () => {
                   <div className="w-10 h-10 rounded-full overflow-hidden">
                     <img
                       src={testimonial.image}
-                      alt={testimonial.name}
+                      alt={`Foto de ${testimonial.name}`}
+                      width={40}
+                      height={40}
+                      loading="lazy"
                       className="w-full h-full object-cover"
                     />
                   </div>
