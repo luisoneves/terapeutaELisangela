@@ -14,7 +14,7 @@
 - [x] **T6**: Implementar Hero H1 animation
 - [x] **T7**: Implementar Hint Tooltip
 - [x] **T8**: Implementar Debug Panel (dev only)
-- [ ] **T9**: Teste final (build + dev) → commit final
+- [x] **T9**: Teste final (build + dev) → commit final
 
 ---
 

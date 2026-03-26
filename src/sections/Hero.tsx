@@ -31,15 +31,15 @@ const Hero: React.FC<HeroProps> = ({ flags }) => {
       tl.fromTo(
         shapeRef.current,
         { scale: 0.8, opacity: 0 },
-        { scale: 1, opacity: 1, duration: 1.2 }
+        { scale: 1, opacity: 1, duration: 1.8 }
       );
 
       // Animação da imagem com máscara de íris
       tl.fromTo(
         imageRef.current,
         { scale: 1.1, opacity: 0, clipPath: 'circle(0% at 50% 50%)' },
-        { scale: 1, opacity: 1, clipPath: 'circle(75% at 50% 50%)', duration: 1.4 },
-        '-=0.8'
+        { scale: 1, opacity: 1, clipPath: 'circle(75% at 50% 50%)', duration: 2 },
+        '-=1'
       );
 
       // Animação do título - revelação por palavra
@@ -48,8 +48,8 @@ const Hero: React.FC<HeroProps> = ({ flags }) => {
         tl.fromTo(
           words,
           { y: 50, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.8, stagger: 0.1 },
-          '-=0.6'
+          { y: 0, opacity: 1, duration: 1.2, stagger: 0.15 },
+          '-=0.8'
         );
       }
 
@@ -57,16 +57,16 @@ const Hero: React.FC<HeroProps> = ({ flags }) => {
       tl.fromTo(
         subtitleRef.current,
         { y: 30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.8 },
-        '-=0.4'
+        { y: 0, opacity: 1, duration: 1 },
+        '-=0.6'
       );
 
       // Animação do CTA
       tl.fromTo(
         ctaRef.current,
         { y: 20, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.6 },
-        '-=0.3'
+        { y: 0, opacity: 1, duration: 0.8 },
+        '-=0.4'
       );
 
       // Animação contínua da forma orgânica

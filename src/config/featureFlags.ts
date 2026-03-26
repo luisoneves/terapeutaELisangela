@@ -15,6 +15,27 @@ const DEFAULT_FLAGS: FeatureFlags = {
 };
 
 const STORAGE_KEY = 'feature-flags';
+const HINT_COOLDOWN_KEY = 'hint-cooldown';
+
+export function clearHintCooldown() {
+  if (typeof window === 'undefined') return;
+  localStorage.removeItem(HINT_COOLDOWN_KEY);
+}
+
+export function getHintCooldown(): number {
+  if (typeof window === 'undefined') return 0;
+  try {
+    const stored = localStorage.getItem(HINT_COOLDOWN_KEY);
+    return stored ? parseInt(stored, 10) : 0;
+  } catch {
+    return 0;
+  }
+}
+
+export function setHintCooldown() {
+  if (typeof window === 'undefined') return;
+  localStorage.setItem(HINT_COOLDOWN_KEY, Date.now().toString());
+}
 
 function getInitialFlags(): FeatureFlags {
   if (typeof window === 'undefined') return DEFAULT_FLAGS;

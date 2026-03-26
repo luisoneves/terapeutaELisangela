@@ -59,12 +59,12 @@ export const HintTooltip: React.FC<HintTooltipProps> = ({ children, flags, class
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -5 }}
-            transition={{ duration: 0.3, ease: 'easeOut' }}
+            transition={{ duration: 0.4, ease: 'easeOut' }}
             className={cn(
-              'absolute left-1/2 -translate-x-1/2 mt-2 px-4 py-2',
-              'bg-dark text-cream text-sm font-body rounded-lg shadow-lg',
-              'whitespace-nowrap z-50 pointer-events-none',
-              isMobile && 'bottom-full mb-2'
+              'absolute left-1/2 -translate-x-1/2 mt-3 px-5 py-3 min-w-[200px]',
+              'bg-dark text-cream text-base font-body rounded-xl shadow-lg',
+              'whitespace-nowrap z-50 pointer-events-none text-center',
+              isMobile && 'bottom-full mb-3'
             )}
           >
             {currentPhrase}

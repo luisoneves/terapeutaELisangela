@@ -30,7 +30,7 @@ const Navigation: React.FC<SmartHeaderProps> = ({ flags }) => {
   };
 
   const headerClasses = cn(
-    'fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out',
+    'fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-out',
     isScrolled
       ? 'bg-cream/80 backdrop-blur-md shadow-soft py-3'
       : 'bg-transparent py-6',

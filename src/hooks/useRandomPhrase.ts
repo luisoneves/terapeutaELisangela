@@ -1,4 +1,5 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
+import { getHintCooldown, setHintCooldown } from '@/config/featureFlags';
 
 const DEFAULT_PHRASES = [
   "Você está a um passo",
@@ -18,6 +19,13 @@ export function useRandomPhrase(options: UseRandomPhraseOptions = {}) {
   const [currentPhrase, setCurrentPhrase] = useState('');
   const [lastShown, setLastShown] = useState(0);
 
+  useEffect(() => {
+    const saved = getHintCooldown();
+    if (saved) {
+      setLastShown(saved);
+    }
+  }, []);
+
   const showPhrase = useCallback(() => {
     const now = Date.now();
     if (now - lastShown < cooldown) return;
@@ -25,6 +33,7 @@ export function useRandomPhrase(options: UseRandomPhraseOptions = {}) {
     const randomIndex = Math.floor(Math.random() * phrases.length);
     setCurrentPhrase(phrases[randomIndex]);
     setLastShown(now);
+    setHintCooldown();
   }, [phrases, cooldown, lastShown]);
 
   const clearPhrase = useCallback(() => {
