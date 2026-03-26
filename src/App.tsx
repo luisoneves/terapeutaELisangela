@@ -8,6 +8,8 @@ import { useEffect } from 'react';
 import { ScrollTrigger, cleanupGSAP } from '@/lib/gsap';
 
 import Navigation from './components/Navigation';
+import AccessibilityMenu from './components/AccessibilityMenu';
+import NavigationDots from './components/NavigationDots';
 import Hero from './sections/Hero';
 import About from './sections/About';
 import Services from './sections/Services';
@@ -74,6 +76,12 @@ function App() {
 
       {/* Rodapé */}
       <Footer />
+
+      {/* Menu de Acessibilidade */}
+      <AccessibilityMenu />
+
+      {/* Navigation Dots */}
+      <NavigationDots />
     </div>
   );
 }

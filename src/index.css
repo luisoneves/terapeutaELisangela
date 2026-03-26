@@ -158,3 +158,90 @@
     scroll-behavior: auto;
   }
 }
+
+/* Reduced Motion - Manual Toggle */
+html:has(input[name="reduced-motion"]:checked),
+html.reduced-motion {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Dark Mode */
+html.dark {
+  --background: 0 0% 12%;
+  --foreground: 48 33% 96%;
+  --color-cream: #2d2d2d;
+  --color-dark: #f8f7f2;
+  --color-gray: #999999;
+}
+
+html.dark body {
+  background-color: #1a1a1a;
+  color: #f8f7f2;
+}
+
+html.dark .bg-cream {
+  background-color: #2d2d2d;
+}
+
+html.dark .text-dark {
+  color: #f8f7f2;
+}
+
+html.dark .bg-dark {
+  background-color: #f8f7f2;
+}
+
+html.dark .text-cream {
+  color: #2d2d2d;
+}
+
+/* High Contrast Mode */
+html.high-contrast {
+  --foreground: 0 0% 0%;
+}
+
+html.dark.high-contrast {
+  --foreground: 0 0% 100%;
+}
+
+html.high-contrast body {
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+html.high-contrast a,
+html.high-contrast button {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+html.high-contrast .text-gray {
+  color: #333333;
+}
+
+html.dark.high-contrast .text-gray {
+  color: #cccccc;
+}
+
+/* Animation for menu */
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.2s ease-out forwards;
+}
