@@ -56,7 +56,6 @@ const convertImage = async (filePath: string): Promise<ConversionResult> => {
 
     const newStats = fs.statSync(outputPath);
     const newSize = newStats.size;
-    const savings = ((originalSize - newSize) / originalSize * 100).toFixed(1);
 
     return {
       success: true,
