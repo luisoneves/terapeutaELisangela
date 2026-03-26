@@ -1,14 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { gsap, ScrollTrigger } from '@/lib/gsap';
 import {
   ReikiIcon,
   YogaIcon,
   AromatherapyIcon,
   FamilyConstellationIcon,
 } from '../components/icons/TherapyIcons';
-
-gsap.registerPlugin(ScrollTrigger);
 
 interface Service {
   id: number;

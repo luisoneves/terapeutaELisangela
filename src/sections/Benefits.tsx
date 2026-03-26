@@ -1,9 +1,6 @@
 import React, { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { gsap, ScrollTrigger } from '@/lib/gsap';
 import { Check, Sun, Moon, Wind } from 'lucide-react';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const benefits = [
   {

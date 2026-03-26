@@ -1,12 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { gsap, ScrollTrigger } from '@/lib/gsap';
 import { Mail, Phone, MapPin, Send, Instagram, MessageCircle, Check } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { siteConfig } from '@/config/site';
 import { formConfig } from '@/config/form';
-
-gsap.registerPlugin(ScrollTrigger);
 
 /**
  * Contact Section

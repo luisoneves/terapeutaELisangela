@@ -1,9 +1,6 @@
 import React, { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { gsap, ScrollTrigger } from '@/lib/gsap';
 import { Heart, Award, Leaf } from 'lucide-react';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const About: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);

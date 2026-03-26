@@ -1,6 +1,11 @@
 import { useEffect } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+// =============================================================================
+// IMPORTS
+// =============================================================================
+// GSAP centralizado - registra ScrollTrigger uma única vez
+// Deve ser importado antes de qualquer uso do gsap
+import { ScrollTrigger, cleanupGSAP } from '@/lib/gsap';
 
 import Navigation from './components/Navigation';
 import Hero from './sections/Hero';
@@ -11,27 +16,44 @@ import Testimonials from './sections/Testimonials';
 import Contact from './sections/Contact';
 import Footer from './sections/Footer';
 
-// Registrar plugins GSAP
-gsap.registerPlugin(ScrollTrigger);
+// =============================================================================
+// COMPONENT: App
+// =============================================================================
+// Componente principal da aplicação
+// 
+// Este arquivo configura o comportamento global da aplicação:
+// - GSAP (importado via '@/lib/gsap' para side-effect)
+// - ScrollTrigger refresh em resize
+// 
+// ESTRUTURA:
+// - Navigation (header fixo)
+// - main (conteúdo principal com todas as seções)
+// - Footer (rodapé)
 
 function App() {
   useEffect(() => {
-    // Configuração global do ScrollTrigger
-    ScrollTrigger.config({
-      ignoreMobileResize: true,
-    });
-
-    // Atualizar ScrollTrigger em resize
+    // =============================================================================
+    // SCROLLTRIGGER REFRESH
+    // =============================================================================
+    // Atualiza o ScrollTrigger quando a janela é redimensionada
+    // Isso garante que as animações continuem funcionando corretamente
+    // após mudanças de tamanho da janela
+    
     const handleResize = () => {
       ScrollTrigger.refresh();
     };
 
     window.addEventListener('resize', handleResize, { passive: true });
 
-    // Limpar ao desmontar
+    // =============================================================================
+    // CLEANUP
+    // =============================================================================
+    // Remove o listener e limpa os triggers ao desmontar o componente
+    // Isso previne vazamentos de memória
+    
     return () => {
       window.removeEventListener('resize', handleResize);
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      cleanupGSAP();
     };
   }, []);
 

@@ -1,9 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { gsap, ScrollTrigger } from '@/lib/gsap';
 import { ChevronLeft, ChevronRight, Quote } from 'lucide-react';
-
-gsap.registerPlugin(ScrollTrigger);
 
 interface Testimonial {
   id: number;
