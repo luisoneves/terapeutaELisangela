@@ -73,10 +73,24 @@ const convertImage = async (filePath: string): Promise<ConversionResult> => {
 };
 
 const getImages = (dir: string): string[] => {
-  const files = fs.readdirSync(dir);
-  return files
-    .filter(file => EXTENSIONS.includes(path.extname(file).toLowerCase()))
-    .map(file => path.join(dir, file));
+  const results: string[] = [];
+  
+  const scanDirectory = (currentDir: string) => {
+    const files = fs.readdirSync(currentDir);
+    for (const file of files) {
+      const fullPath = path.join(currentDir, file);
+      const stat = fs.statSync(fullPath);
+      
+      if (stat.isDirectory()) {
+        scanDirectory(fullPath);
+      } else if (EXTENSIONS.includes(path.extname(file).toLowerCase())) {
+        results.push(fullPath);
+      }
+    }
+  };
+  
+  scanDirectory(dir);
+  return results;
 };
 
 const main = async () => {

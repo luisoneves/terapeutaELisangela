@@ -111,20 +111,23 @@ const About: React.FC = () => {
                 className="overflow-hidden shadow-soft"
                 style={{ borderRadius: '30% 70% 70% 30% / 30% 30% 70% 70%' }}
               >
-                <img
-                  src="/therapist-portrait.jpg"
-                  alt="Ana Silva - Terapeuta Holística"
-                  width={400}
-                  height={533}
-                  loading="lazy"
-                  className="w-full h-auto object-cover aspect-[3/4] hover:scale-105 transition-transform duration-700"
-                />
+                <picture>
+                  <source srcSet="/images/about/therapist-portrait.webp" type="image/webp" />
+                  <img
+                    src="/images/about/therapist-portrait.jpg"
+                    alt="Ana Silva - Terapeuta Holística"
+                    width={400}
+                    height={533}
+                    loading="lazy"
+                    className="w-full h-auto object-cover aspect-[3/4] hover:scale-105 transition-transform duration-700"
+                  />
+                </picture>
               </div>
 
               {/* Borboleta decorativa */}
               <img
                 ref={butterflyRef}
-                src="/butterfly.png"
+                src="/images/about/butterfly.webp"
                 alt="Borboleta decorativa"
                 width={160}
                 height={160}

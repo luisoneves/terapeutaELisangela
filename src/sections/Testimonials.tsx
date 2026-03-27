@@ -7,6 +7,7 @@ interface Testimonial {
   name: string;
   role: string;
   image: string;
+  fallback: string;
   text: string;
 }
 
@@ -15,21 +16,24 @@ const testimonials: Testimonial[] = [
     id: 1,
     name: 'Maria Fernanda',
     role: 'Empresária',
-    image: '/testimonial-1.jpg',
+    image: '/images/testimonials/testimonial-1.webp',
+    fallback: '/images/testimonials/testimonial-1.jpg',
     text: 'As sessões de Reiki com a Ana transformaram minha relação com o estresse. Hoje consigo lidar com os desafios do dia a dia com muito mais calma e clareza. Sou eternamente grata por esse trabalho tão especial.',
   },
   {
     id: 2,
     name: 'Carlos Eduardo',
     role: 'Professor',
-    image: '/testimonial-2.jpg',
+    image: '/images/testimonials/testimonial-2.webp',
+    fallback: '/images/testimonials/testimonial-2.jpg',
     text: 'A Constelação Familiar me ajudou a entender padrões que se repetiam na minha vida há anos. Foi um processo profundo de cura que mudou minha perspectiva sobre relacionamentos e sobre mim mesmo.',
   },
   {
     id: 3,
     name: 'Patrícia Lima',
     role: 'Artista',
-    image: '/testimonial-3.jpg',
+    image: '/images/testimonials/testimonial-3.webp',
+    fallback: '/images/testimonials/testimonial-3.jpg',
     text: 'A combinação de Yoga e Aromaterapia trouxe um equilíbrio que eu não sabia que era possível. Ana tem um dom especial de criar espaços seguros para a transformação acontecer naturalmente.',
   },
 ];
@@ -260,14 +264,17 @@ const Testimonials: React.FC = () => {
               >
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full overflow-hidden">
-                    <img
-                      src={testimonial.image}
-                      alt={`Foto de ${testimonial.name}`}
-                      width={40}
-                      height={40}
-                      loading="lazy"
-                      className="w-full h-full object-cover"
-                    />
+                    <picture>
+                      <source srcSet={testimonial.image} type="image/webp" />
+                      <img
+                        src={testimonial.fallback}
+                        alt={`Foto de ${testimonial.name}`}
+                        width={40}
+                        height={40}
+                        loading="lazy"
+                        className="w-full h-full object-cover"
+                      />
+                    </picture>
                   </div>
                   <div>
                     <p className="font-display text-sm text-dark">{testimonial.name}</p>

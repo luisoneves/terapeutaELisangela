@@ -150,75 +150,93 @@ const Benefits: React.FC = () => {
               {/* Coluna 1 */}
               <div ref={col1Ref} className="flex-1 flex flex-col gap-4">
                 <div className="relative overflow-hidden rounded-3xl">
-                  <img
-                    src="/benefit-1.jpg"
-                    alt="Meditação na praia"
-                    width={300}
-                    height={256}
-                    loading="lazy"
-                    className="w-full h-64 object-cover hover:scale-105 transition-transform duration-700"
-                  />
+                  <picture>
+                    <source srcSet="/images/benefits/benefit-1.webp" type="image/webp" />
+                    <img
+                      src="/images/benefits/benefit-1.jpg"
+                      alt="Meditação na praia"
+                      width={300}
+                      height={256}
+                      loading="lazy"
+                      className="w-full h-64 object-cover hover:scale-105 transition-transform duration-700"
+                    />
+                  </picture>
                 </div>
                 <div className="relative overflow-hidden rounded-3xl">
-                  <img
-                    src="/benefit-2.jpg"
-                    alt="Yoga restaurativa"
-                    width={300}
-                    height={192}
-                    loading="lazy"
-                    className="w-full h-48 object-cover hover:scale-105 transition-transform duration-700"
-                  />
+                  <picture>
+                    <source srcSet="/images/benefits/benefit-2.webp" type="image/webp" />
+                    <img
+                      src="/images/benefits/benefit-2.jpg"
+                      alt="Yoga restaurativa"
+                      width={300}
+                      height={192}
+                      loading="lazy"
+                      className="w-full h-48 object-cover hover:scale-105 transition-transform duration-700"
+                    />
+                  </picture>
                 </div>
               </div>
 
               {/* Coluna 2 - Central e mais alta */}
               <div ref={col2Ref} className="flex-1 flex flex-col gap-4 pt-12">
                 <div className="relative overflow-hidden rounded-3xl">
-                  <img
-                    src="/benefit-3.jpg"
-                    alt="Yoga na natureza"
-                    width={300}
-                    height={288}
-                    loading="lazy"
-                    className="w-full h-72 object-cover hover:scale-105 transition-transform duration-700"
-                  />
+                  <picture>
+                    <source srcSet="/images/benefits/benefit-3.webp" type="image/webp" />
+                    <img
+                      src="/images/benefits/benefit-3.jpg"
+                      alt="Yoga na natureza"
+                      width={300}
+                      height={288}
+                      loading="lazy"
+                      className="w-full h-72 object-cover hover:scale-105 transition-transform duration-700"
+                    />
+                  </picture>
                 </div>
                 <div className="relative overflow-hidden rounded-3xl">
-                  <img
-                    src="/benefit-1.jpg"
-                    alt="Momento de paz"
-                    width={300}
-                    height={224}
-                    loading="lazy"
-                    className="w-full h-56 object-cover hover:scale-105 transition-transform duration-700"
-                    style={{ objectPosition: 'center 30%' }}
-                  />
+                  <picture>
+                    <source srcSet="/images/benefits/benefit-1.webp" type="image/webp" />
+                    <img
+                      src="/images/benefits/benefit-1.jpg"
+                      alt="Momento de paz"
+                      width={300}
+                      height={224}
+                      loading="lazy"
+                      className="w-full h-56 object-cover hover:scale-105 transition-transform duration-700"
+                      style={{ objectPosition: 'center 30%' }}
+                    />
+                  </picture>
                 </div>
               </div>
 
               {/* Coluna 3 */}
               <div ref={col3Ref} className="flex-1 flex flex-col gap-4 pt-6">
                 <div className="relative overflow-hidden rounded-3xl">
-                  <img
-                    src="/benefit-2.jpg"
-                    alt="Bem-estar"
-                    width={300}
-                    height={208}
-                    loading="lazy"
-                    className="w-full h-52 object-cover hover:scale-105 transition-transform duration-700"
-                    style={{ objectPosition: 'center 70%' }}
-                  />
+                  <picture>
+                    <source srcSet="/images/benefits/benefit-2.webp" type="image/webp" />
+                    <img
+                      src="/images/benefits/benefit-2.jpg"
+                      alt="Bem-estar"
+                      width={300}
+                      height={208}
+                      loading="lazy"
+                      className="w-full h-52 object-cover hover:scale-105 transition-transform duration-700"
+                      style={{ objectPosition: 'center 70%' }}
+                    />
+                  </picture>
                 </div>
                 <div className="relative overflow-hidden rounded-3xl">
-                  <img
-                    src="/benefit-3.jpg"
-                    alt="Conexão com a natureza"
-                    width={300}
-                    height={256}
-                    loading="lazy"
-                    className="w-full h-64 object-cover hover:scale-105 transition-transform duration-700"
-                    style={{ objectPosition: 'center 60%' }}
-                  />
+                  <picture>
+                    <source srcSet="/images/benefits/benefit-3.webp" type="image/webp" />
+                    <img
+                      src="/images/benefits/benefit-3.jpg"
+                      alt="Conexão com a natureza"
+                      width={300}
+                      height={256}
+                      loading="lazy"
+                      className="w-full h-64 object-cover hover:scale-105 transition-transform duration-700"
+                      style={{ objectPosition: 'center 60%' }}
+                    />
+                  </picture>
                 </div>
               </div>
             </div>
@@ -226,14 +244,17 @@ const Benefits: React.FC = () => {
 
           {/* Versão mobile - imagem única */}
           <div className="lg:hidden relative h-64 rounded-3xl overflow-hidden">
-            <img
-              src="/benefit-1.jpg"
-              alt="Benefícios da terapia holística"
-              width={400}
-              height={256}
-              loading="lazy"
-              className="w-full h-full object-cover"
-            />
+            <picture>
+              <source srcSet="/images/benefits/benefit-1.webp" type="image/webp" />
+              <img
+                src="/images/benefits/benefit-1.jpg"
+                alt="Benefícios da terapia holística"
+                width={400}
+                height={256}
+                loading="lazy"
+                className="w-full h-full object-cover"
+              />
+            </picture>
           </div>
 
           {/* Conteúdo */}

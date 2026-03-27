@@ -221,14 +221,17 @@ const Hero: React.FC<HeroProps> = ({ flags }) => {
                 className="overflow-hidden"
                 style={{ borderRadius: '40% 60% 60% 40% / 50% 50% 50% 50%' }}
               >
-                <img
-                  src="/hero-image.jpg"
-                  alt="Mulher em momento de tranquilidade e paz"
-                  width={600}
-                  height={800}
-                  loading="eager"
-                  className="w-full h-auto object-cover aspect-[3/4] hover:scale-105 transition-transform duration-700"
-                />
+                <picture>
+                  <source srcSet="/images/hero/hero-image-nova.webp" type="image/webp" />
+                  <img
+                    src="/images/hero/hero-image.jpg"
+                    alt="Ana Silva - Terapeuta Holística Integrativa"
+                    width={600}
+                    height={800}
+                    loading="eager"
+                    className="w-full h-auto object-cover aspect-[3/4] hover:scale-105 transition-transform duration-700"
+                  />
+                </picture>
               </div>
 
               {/* Elemento decorativo */}
