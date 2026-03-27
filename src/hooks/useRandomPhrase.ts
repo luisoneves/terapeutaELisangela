@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback } from 'react';
 import { getHintCooldown, setHintCooldown } from '@/config/featureFlags';
 
 const DEFAULT_PHRASES = [
@@ -14,17 +14,15 @@ interface UseRandomPhraseOptions {
   cooldown?: number;
 }
 
+function getInitialLastShown(): number {
+  if (typeof window === 'undefined') return 0;
+  return getHintCooldown() || 0;
+}
+
 export function useRandomPhrase(options: UseRandomPhraseOptions = {}) {
   const { phrases = DEFAULT_PHRASES, cooldown = 2000 } = options;
   const [currentPhrase, setCurrentPhrase] = useState('');
-  const [lastShown, setLastShown] = useState(0);
-
-  useEffect(() => {
-    const saved = getHintCooldown();
-    if (saved) {
-      setLastShown(saved);
-    }
-  }, []);
+  const [lastShown, setLastShown] = useState(getInitialLastShown);
 
   const showPhrase = useCallback(() => {
     const now = Date.now();

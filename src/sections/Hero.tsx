@@ -112,7 +112,7 @@ const Hero: React.FC<HeroProps> = ({ flags }) => {
 
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
     return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+  }, [shouldAnimate, prefersReducedMotion]);
 
   const scrollToAbout = () => {
     const element = document.querySelector('#sobre');

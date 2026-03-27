@@ -13,28 +13,34 @@
  * }
  */
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
+
+function getInitialReducedMotion(): boolean {
+  if (typeof window === 'undefined') return false;
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
 
 export function useReducedMotion(): boolean {
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(getInitialReducedMotion);
+
+  const mediaQuery = useMemo(() => {
+    if (typeof window === 'undefined') return null;
+    return window.matchMedia('(prefers-reduced-motion: reduce)');
+  }, []);
 
   useEffect(() => {
-    // Verificar preferência inicial
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    setPrefersReducedMotion(mediaQuery.matches);
+    if (!mediaQuery) return;
 
-    // Listener para mudanças
     const handleChange = (event: MediaQueryListEvent) => {
       setPrefersReducedMotion(event.matches);
     };
 
     mediaQuery.addEventListener('change', handleChange);
 
-    // Cleanup
     return () => {
       mediaQuery.removeEventListener('change', handleChange);
     };
-  }, []);
+  }, [mediaQuery]);
 
   return prefersReducedMotion;
 }

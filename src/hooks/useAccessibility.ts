@@ -51,22 +51,31 @@ const FONT_SIZE_VALUES: Record<FontSize, string> = {
   'x-large': '125%',
 };
 
-export function useAccessibility(): [AccessibilityState, AccessibilityActions] {
-  const [state, setState] = useState<AccessibilityState>(() => {
-    // Tentar carregar do localStorage
-    if (typeof window === 'undefined') return DEFAULT_STATE;
+function getInitialState(): AccessibilityState {
+  if (typeof window === 'undefined') return DEFAULT_STATE;
+  
+  try {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const systemReduced = mediaQuery.matches;
     
-    try {
-      const stored = localStorage.getItem(STORAGE_KEY);
-      if (stored) {
-        const parsed = JSON.parse(stored);
-        return { ...DEFAULT_STATE, ...parsed };
-      }
-    } catch {
-      // Ignorar erros de localStorage
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored) {
+      const parsed = JSON.parse(stored);
+      return { 
+        ...DEFAULT_STATE, 
+        ...parsed,
+        reducedMotion: systemReduced || parsed.reducedMotion
+      };
     }
+    
+    return { ...DEFAULT_STATE, reducedMotion: systemReduced };
+  } catch {
     return DEFAULT_STATE;
-  });
+  }
+}
+
+export function useAccessibility(): [AccessibilityState, AccessibilityActions] {
+  const [state, setState] = useState<AccessibilityState>(getInitialState);
 
   // Determinar tema resolved (considerando system)
   const getResolvedTheme = useCallback((theme: Theme): 'light' | 'dark' => {
@@ -121,18 +130,6 @@ export function useAccessibility(): [AccessibilityState, AccessibilityActions] {
   useEffect(() => {
     document.documentElement.classList.toggle('high-contrast', state.contrast === 'high');
   }, [state.contrast]);
-
-  // Verificar reduced motion do sistema
-  useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const systemReduced = mediaQuery.matches;
-    
-    // Se sistema tem reduced motion OU usuário ativou manualmente
-    setState(prev => ({
-      ...prev,
-      reducedMotion: systemReduced || prev.reducedMotion
-    }));
-  }, []);
 
   // Ações
   const setTheme = useCallback((theme: Theme) => {

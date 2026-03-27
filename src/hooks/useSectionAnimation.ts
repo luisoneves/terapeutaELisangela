@@ -213,6 +213,7 @@ export function useSectionAnimation({
       triggers.forEach((trigger) => trigger.kill());
       ctx.revert();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     sectionRef,
     titleAnimation,
